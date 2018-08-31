@@ -1,0 +1,16 @@
+package spicejet.api;
+
+public class FlightRecords {
+
+	private String FlightNumer ;
+
+	public String getFlightNumer() {
+		return FlightNumer;
+	}
+
+	public void setFlightNumer(String flightNumer) {
+		FlightNumer = flightNumer;
+	}
+	
+	
+}

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Spicejet
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Tripti
+Implementation-Vendor-Id: io.spicejet.api
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/spicejet
+Created-By: Maven Integration for Eclipse
+

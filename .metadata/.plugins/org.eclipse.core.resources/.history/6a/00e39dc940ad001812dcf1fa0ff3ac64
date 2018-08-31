@@ -1,0 +1,18 @@
+package spicejet.api;
+
+public class FlightInput {
+
+	private String FromCity;
+	private String ToCity;
+	private String DateOfJourney;
+	
+	public String getFromCity() {
+		return FromCity;
+	}
+	public String getToCity() {
+		return ToCity;
+	}
+	public String getDateOfJourney() {
+		return DateOfJourney;
+	}
+}

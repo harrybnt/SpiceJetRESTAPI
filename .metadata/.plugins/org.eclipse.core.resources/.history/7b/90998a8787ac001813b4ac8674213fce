@@ -1,0 +1,20 @@
+package spicejet.api;
+
+import org.springframework.stereotype.Service;
+import java.util.*;
+
+import javax.swing.text.Document;
+
+
+
+
+@Service
+public class SpiceServices {
+
+	public FlightRecords flightDetailFetch(FlightInput flightInput)
+	{
+		Document doc = Jsoup.connect("");
+		
+		return new FlightRecords();
+	}
+}

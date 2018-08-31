@@ -1,0 +1,89 @@
+package spicejet.api;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.util.*;
+
+import javax.swing.text.Document;
+
+
+
+
+@Service
+public class SpiceServices {
+
+	public ArrayList<FlightRecords> flightDetailFetch(String str) throws IOException
+	{
+		Document doc = (Document) Jsoup.connect("https://book.spicejet.com/search.aspx?mode=search")
+				.data("EnablePost","True")
+				.data("triptype","OneWay")
+				.data("origincity","Bengaluru (BLR)")
+				.data("origincitycode","BLR")
+				.data("destinationcity","Chennai (MAA)")
+				.data("destinationcitycode","MAA")
+				.data("fromdate","01-09-2018")
+				.data("todate","")
+				.data("adultcount","1")
+				.data("childcount","0")
+				.data("infantcount","0")
+				.data("indianarmed","0")
+				.data("studentdiscount","0")
+				.data("SeniorCitizenDiscount","0")
+				.data("unmr","0")
+				.data("promocodetext","")
+				.data("voucherdiscount","0")
+				.data("currency","INR")
+				.data("familyandfriendsdiscount","0")
+				.data("randomNumber","K1KGXD")
+				.data("origincity2","Departure City")
+				.data("origincitycode2","")
+				.data("destinationcity2","Arrival City")
+				.data("destinationcitycode2","")
+				.data("fromdate3","07-09-2018")
+				.data("origincity3","Departure City")
+				.data("origincitycode3","")
+				.data("destinationcity3","Arrival City")
+				.data("destinationcitycode3","")
+				.data("fromdate4","14-09-2018")
+				.data("origincity4","Departure City")
+				.data("origincitycode4","")
+				.data("destinationcity4","Arrival City")
+				.data("destinationcitycode4","")
+				.data("fromdate5","21-09-2018")
+				.data("origincity5","Departure City")
+				.data("origincitycode5","")
+				.data("destinationcity5","Arrival City")
+				.data("destinationcitycode5","")
+				.data("fromdate6","28-09-2018").post();
+		
+		System.out.println(doc);
+		
+		Elements table = ((Element) doc).select("table#availabilityTable0");
+		Elements rows = table.select("tr");
+		ArrayList<FlightRecords> flight_List = new ArrayList<FlightRecords>();
+		for(int i=3 ; i<rows.size()-1;i++)
+		{
+			Element row = rows.get(i);
+			Elements cols =  row.select("td");
+			String flight_number = cols.select(".special").text().toString();
+			String flight_duration = cols.select(".travel-duration").text().toString();
+			String departure_time = cols.select(".departure-time").text().toString();
+			String arrival_time = cols.select(".showtable-cell").text().toString();
+			String price = cols.select(".fareCol1").text().toString();
+			FlightRecords fr = new FlightRecords();
+			fr.setFlightNumer(flight_number);
+			fr.setDepartureTime(departure_time);
+			fr.setArrivalTime(arrival_time);
+			fr.setPrice(price);
+			flight_List.add(fr);
+		}
+				
+				
+		
+		return flight_List;
+	}
+}
