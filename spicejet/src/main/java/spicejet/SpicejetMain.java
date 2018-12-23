@@ -9,7 +9,6 @@ public class SpicejetMain {
 	public static void main(String[] arg)
 	{
 		SpringApplication.run(SpicejetMain.class, arg);
-		int k =0;
 	}
 
 }
